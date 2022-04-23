@@ -6,14 +6,8 @@
 #         self.right = right
 class Solution:
     def constructMaximumBinaryTree(self, nums: List[int]) -> Optional[TreeNode]:
-        if len(nums) == 0:
-            return None
-        max_idx = 0
-        max_val = nums[0]
-        for i in range(len(nums)):
-            if max_val < nums[i]:
-                max_idx = i
-                max_val = nums[i]
-        left_child = self.constructMaximumBinaryTree(nums[0:max_idx])
-        right_child = self.constructMaximumBinaryTree(nums[max_idx+1:])
+        max_val = max(nums)
+        max_idx = nums.index(max_val)
+        left_child = self.constructMaximumBinaryTree(nums[0:max_idx]) if max_idx > 0 else None
+        right_child = self.constructMaximumBinaryTree(nums[max_idx+1:]) if max_idx < len(nums) - 1 else None
         return TreeNode(max_val, left_child, right_child)
