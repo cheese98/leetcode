@@ -1,10 +1,15 @@
 class Solution {
 public:
     int tribonacci(int n) {
-        int a[38] = {0, 1, 1};
+        int n0 = 0, n1 = 1, n2 = 1, n3;
+        if (n < 2) return n;
+        if (n == 2) return 1;
         for (int i = 3; i <= n; i++) {
-            a[i] = a[i - 3] + a[i - 2] + a[i - 1];
+            n3 = n2 + n1 + n0;
+            n0 = n1;
+            n1 = n2;
+            n2 = n3;
         }
-        return a[n];
+        return n3;
     }
 };
